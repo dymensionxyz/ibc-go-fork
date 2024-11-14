@@ -30,9 +30,9 @@ func (k Keeper) ClientUpdateProposal(ctx sdk.Context, p *types.ClientUpdatePropo
 
 	subjectClientStore := k.ClientStore(ctx, p.SubjectClientId)
 
-	if status := subjectClientState.Status(ctx, subjectClientStore, k.cdc); status == exported.Active {
-		return sdkerrors.Wrap(types.ErrInvalidUpdateClientProposal, "cannot update Active subject client")
-	}
+	// if status := subjectClientState.Status(ctx, subjectClientStore, k.cdc); status == exported.Active {
+	// 	return sdkerrors.Wrap(types.ErrInvalidUpdateClientProposal, "cannot update Active subject client")
+	// }
 
 	substituteClientState, found := k.GetClientState(ctx, p.SubstituteClientId)
 	if !found {
