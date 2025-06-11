@@ -165,18 +165,18 @@ func (k Keeper) RecoverClient(ctx sdk.Context, subjectClientID, substituteClient
 
 	subjectClientStore := k.ClientStore(ctx, subjectClientID)
 
-	if status := k.GetClientStatus(ctx, subjectClientState, subjectClientID); status == exported.Active {
-		return errorsmod.Wrapf(types.ErrInvalidRecoveryClient, "cannot recover %s subject client", exported.Active)
-	}
+	// if status := k.GetClientStatus(ctx, subjectClientState, subjectClientID); status == exported.Active {
+	// 	return errorsmod.Wrapf(types.ErrInvalidRecoveryClient, "cannot recover %s subject client", exported.Active)
+	// }
 
 	substituteClientState, found := k.GetClientState(ctx, substituteClientID)
 	if !found {
 		return errorsmod.Wrapf(types.ErrClientNotFound, "substitute client with ID %s", substituteClientID)
 	}
 
-	if subjectClientState.GetLatestHeight().GTE(substituteClientState.GetLatestHeight()) {
-		return errorsmod.Wrapf(types.ErrInvalidHeight, "subject client state latest height is greater or equal to substitute client state latest height (%s >= %s)", subjectClientState.GetLatestHeight(), substituteClientState.GetLatestHeight())
-	}
+	// if subjectClientState.GetLatestHeight().GTE(substituteClientState.GetLatestHeight()) {
+	// 	return errorsmod.Wrapf(types.ErrInvalidHeight, "subject client state latest height is greater or equal to substitute client state latest height (%s >= %s)", subjectClientState.GetLatestHeight(), substituteClientState.GetLatestHeight())
+	// }
 
 	substituteClientStore := k.ClientStore(ctx, substituteClientID)
 
